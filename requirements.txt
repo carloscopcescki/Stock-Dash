@@ -1,0 +1,11 @@
+streamlit
+streamlit-extras
+pandas
+plotly
+yfinance
+beautifulsoup4
+deep-translator
+pynvest
+xlrd
+openpyxl
+fundamentus
