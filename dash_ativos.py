@@ -152,14 +152,25 @@ if get_market == "Fundos Imobiliários":
             fii_data = FII_Data(stock)
             ticker = fii_data.fii_ticker()
             market.stock_data(stock, periodo)
+            
             col_img, col_name = st.columns(2)
             with col_img:
                 img = st.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRz2D2twD0bV62AwgI4vG6NXPrgt-rmw86XA&s", width=120)
             with col_name:
                 st.header(fii_data.fii_name())
-                
-            st.markdown(f"**Código de negociação:** {fii_data.fii_ticker()}")
-            st.markdown(f"**Setor:** {fii_data.fii_type()}")
+
+            col_fii_info1, col_fii_info2 = st.columns(2)
+            with col_fii_info1:
+                st.markdown(f"**Código de negociação:** {fii_data.fii_ticker()}")
+                st.markdown(f"**Setor:** {fii_data.fii_type()}")
+                st.markdown(f"**Segmento:** {fii_data.fii_segment()}")
+                st.markdown(f"**Gestão:** {fii_data.fii_management()}")
+
+            with col_fii_info2:
+                st.markdown("**Imóveis:** https://www.fundamentus.com.br/fii_fatos_relevantes.php?papel=MXRF11")
+                st.markdown("**Relatórios:** https://www.fundamentus.com.br/fii_relatorios.php?papel=MXRF11")
+                st.markdown("**Comunicados:** https://www.fundamentus.com.br/fii_imoveis_detalhes.php?papel=MXRF11")
+            
             col1, col2, col3, col4 = st.columns(4)
             col1.metric(label="Valor da cotação", value=f"R$ {fii_data.fii_value()}", delta=f"{fii_data.fii_variation()}")
             col2.metric(label="Dividend Yield", value=fii_data.fii_dy())
@@ -169,10 +180,10 @@ if get_market == "Fundos Imobiliários":
             style_metric_cards(border_left_color='#292D34',
                                border_color='#292D34', background_color='#0e1111')
             
-            st.header(f"Cotação {stock}", divider="grey")
+            st.header(f"Cotação de {stock}", divider="grey")
             market.price_chart(stock)
 
-            st.header(f"Dividendos {stock}", divider="grey")
+            st.header(f"Dividendos de {stock}", divider="grey")
             market.fii_dividends(stock)
 
             colDividendChart, colDividendTable = st.columns(2)
@@ -180,6 +191,26 @@ if get_market == "Fundos Imobiliários":
                 market.fii_dividends_chart(stock)
             with colDividendTable:
                 market.fii_dividends_table()
+
+            st.header(f"Dados de {stock}", divider="grey")
+            col1a, col1b, col1c, col1d = st.columns(4)
+            with col1a:
+                st.markdown(f"**FFO Yield:** {fii_data.fii_ffoyield()}")
+                st.markdown(f"**Dividend Yield:** {fii_data.fii_dy()}")
+                st.markdown(f"**FFO:** R$ {fii_data.fii_ffo()}")
+            with col1b:
+                st.markdown(f"**FFO/Cota:** {fii_data.fii_ffoticker()}")
+                st.markdown(f"**Dividendo/Cota:** {fii_data.fii_divticker()}")
+                st.markdown(f"**Rendimento Distribuído:** R$ {fii_data.fii_distributed_income()}")
+            with col1c:
+                st.markdown(f"**P/VP:** {fii_data.fii_pvp()}")
+                st.markdown(f"**VP/Cota:** {fii_data.fii_vpticker()}")
+                st.markdown(f"**Ativos:** R$ {fii_data.fii_assets()}")
+            with col1d:
+                st.markdown(f"**Receita:** R$ {fii_data.fii_revenue()}")
+                st.markdown(f"**Venda de ativos:** R$ {fii_data.fii_sale()}")
+                st.markdown(f"**Patrimônio Líquido:** R$ {fii_data.fii_patrim()}")
+            
         else:
             st.warning("Selecione um tipo de renda variável")
     except Exception as e:
