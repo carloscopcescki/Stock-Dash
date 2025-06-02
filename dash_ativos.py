@@ -144,11 +144,11 @@ if get_market == "Fundos Imobiliários":
                                          [''] + stock_list))
         periodo = int(st.sidebar.number_input("Insira o período (em anos)", step=1, value=1, min_value=1, max_value=10))
         
-        st.sidebar.divider()
-        st.sidebar.link_button(f"Dados de {stock}", url=f"https://investidor10.com.br/fiis/{stock}/")
-        st.sidebar.link_button(f"Notícias sobre {stock}", url=f"https://investidor10.com.br/noticias/ativo/{stock}/")
-        
         if stock:
+            st.sidebar.divider()
+            st.sidebar.link_button(f"Dados de {stock}", url=f"https://investidor10.com.br/fiis/{stock}/")
+            st.sidebar.link_button(f"Notícias sobre {stock}", url=f"https://investidor10.com.br/noticias/ativo/{stock}/")
+            
             fii_data = FII_Data(stock)
             ticker = fii_data.fii_ticker()
             market.stock_data(stock, periodo)
@@ -167,9 +167,9 @@ if get_market == "Fundos Imobiliários":
                 st.markdown(f"**Gestão:** {fii_data.fii_management()}")
 
             with col_fii_info2:
-                st.markdown(f"**Fatos relevantes:** https://www.fundamentus.com.br/fii_fatos_relevantes.php?papel={stock}")
-                st.markdown(f"**Relatórios:** https://www.fundamentus.com.br/fii_relatorios.php?papel={stock}")
-                st.markdown(f"**Imóveis:** https://www.fundamentus.com.br/fii_imoveis_detalhes.php?papel={stock}")
+                st.markdown("**Imóveis:** https://www.fundamentus.com.br/fii_fatos_relevantes.php?papel=MXRF11")
+                st.markdown("**Relatórios:** https://www.fundamentus.com.br/fii_relatorios.php?papel=MXRF11")
+                st.markdown("**Comunicados:** https://www.fundamentus.com.br/fii_imoveis_detalhes.php?papel=MXRF11")
             
             col1, col2, col3, col4 = st.columns(4)
             col1.metric(label="Valor da cotação", value=f"R$ {fii_data.fii_value()}", delta=f"{fii_data.fii_variation()}")
