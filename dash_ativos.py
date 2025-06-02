@@ -167,9 +167,9 @@ if get_market == "Fundos Imobiliários":
                 st.markdown(f"**Gestão:** {fii_data.fii_management()}")
 
             with col_fii_info2:
-                st.markdown("**Imóveis:** https://www.fundamentus.com.br/fii_fatos_relevantes.php?papel=MXRF11")
-                st.markdown("**Relatórios:** https://www.fundamentus.com.br/fii_relatorios.php?papel=MXRF11")
-                st.markdown("**Comunicados:** https://www.fundamentus.com.br/fii_imoveis_detalhes.php?papel=MXRF11")
+                st.markdown(f"**Comunicados:** https://www.fundamentus.com.br/fii_fatos_relevantes.php?papel={stock}")
+                st.markdown(f"**Relatórios:** https://www.fundamentus.com.br/fii_relatorios.php?papel={stock}")
+                st.markdown(f"**Imóveis:** https://www.fundamentus.com.br/fii_imoveis_detalhes.php?papel={stock}")
             
             col1, col2, col3, col4 = st.columns(4)
             col1.metric(label="Valor da cotação", value=f"R$ {fii_data.fii_value()}", delta=f"{fii_data.fii_variation()}")
