@@ -6,6 +6,7 @@ import yfinance as yf
 from bs4 import BeautifulSoup
 from deep_translator import GoogleTranslator
 from deep_translator.exceptions import NotValidPayload, TooManyRequests
+from pynvest.scrappers.fundamentus import Fundamentus
 
 class Page:
     """Criar dashboard para monitoramento de ativos"""
@@ -42,17 +43,13 @@ class Market:
 
     def stock_list(self) -> list[str]:
         """Obtém lista de ativos para cada tipo"""
+        tickers_scrapper = Fundamentus()
         if self.market == 'Ações':
-            stock_list = list(
-                pd.read_excel('lists/listativos.xls')['Código'].values)
-            stock_list.sort()
-            return [stock for stock in stock_list]
+            tickers = tickers_scrapper.extracao_tickers_de_ativos()
+            return tickers
         else:
-            stock_list = list(
-                pd.read_excel('lists/listafii.xls')['Código'].values)
-            stock_list.sort()
-            return [stock for stock in stock_list]
-        return []
+            tickers = tickers_scrapper.extracao_tickers_de_ativos(tipo="fiis")
+            return tickers
 
     def stock_data(self, symbol: str, years: int) -> pd.DataFrame:
         """Gera dataframe com os dados dos ativos"""

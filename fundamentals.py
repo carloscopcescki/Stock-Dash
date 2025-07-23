@@ -1,4 +1,5 @@
 from pynvest.scrappers.fundamentus import Fundamentus
+from yfinance import ticker
 
 stock_data = Fundamentus()
 
@@ -214,3 +215,63 @@ class FII_Data:
         """Preço dividido pelo valor patrimonial"""
         ticker_pvp = self.df_fundamental['vlr_p_sobre_vp'].values[0]
         return str(ticker_pvp)
+
+    def fii_segment(self) -> str:
+        """Segmento do FII"""
+        ticker_segment = self.df_fundamental['segmento'].values[0]
+        return str(ticker_segment)
+
+    def fii_management(self) -> str:
+        """Gestão do FII"""
+        ticker_management = self.df_fundamental['tipo_gestao'].values[0]
+        return str(ticker_management)
+
+    def fii_ffoyield(self) -> str:
+        """FFO Yield do FII"""
+        ticker_ffoyield = self.df_fundamental['vlr_ffo_yield'].values[0]
+        return str(ticker_ffoyield)
+
+    def fii_ffoticker(self) -> str:
+        """FFO sobre cota do FII"""
+        ticker_ffoticker = self.df_fundamental['vlr_ffo_sobre_cota'].values[0]
+        return str(ticker_ffoticker)
+
+    def fii_divticker(self) -> str:
+        """Dividend Yield sobre cota do FII"""
+        ticker_divticker = self.df_fundamental['vlr_dividendo_sobre_cota'].values[0]
+        return str(ticker_divticker)
+
+    def fii_vpticker(self) -> str:
+        """Valor patrimonial sobre cota do FII"""
+        ticker_vpticker = self.df_fundamental['vlr_vp_sobre_cota'].values[0]
+        return str(ticker_vpticker)
+
+    def fii_revenue(self) -> str:
+        """Receita do FII"""
+        ticker_revenue = self.df_fundamental['vlr_rec_bruta_ult_12m'].values[0]
+        return str(ticker_revenue)
+
+    def fii_sale(self) -> str:
+        """Vendas de ativos do FII"""
+        ticker_sale = self.df_fundamental['vlr_vend_ativ_ult_12m'].values[0]
+        return str(ticker_sale)
+
+    def fii_ffo(self) -> str:
+        """FFO do FII"""
+        ticker_ffo = self.df_fundamental['vlr_ffo_ult_12m'].values[0]
+        return str(ticker_ffo)
+
+    def fii_distributed_income(self) -> str:
+        """Rendimento distribuído do FII"""
+        ticker_distributed_income = self.df_fundamental['vlr_rendim_distr_ult_12m'].values[0]
+        return str(ticker_distributed_income)
+
+    def fii_assets(self) -> str:
+        """Ativos do FII"""
+        ticker_assets = self.df_fundamental['vlr_ativos'].values[0]
+        return str(ticker_assets)
+
+    def fii_patrim(self) -> str:
+        """Patrimônio líquido do FII"""
+        ticker_patrim = self.df_fundamental['vlr_patrim_liq'].values[0]
+        return str(ticker_patrim)
