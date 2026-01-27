@@ -4,8 +4,8 @@ import requests
 import plotly.graph_objs as go
 import yfinance as yf
 from bs4 import BeautifulSoup
-#from deep_translator import GoogleTranslator
-#from deep_translator.exceptions import NotValidPayload, TooManyRequests
+from deep_translator import GoogleTranslator
+from deep_translator.exceptions import NotValidPayload, TooManyRequests
 from pynvest.scrappers.fundamentus import Fundamentus
 
 class Page:
@@ -88,7 +88,7 @@ class Market:
         website = self.ticker.get_info()
         return str(website['website'])
     
-    #def description(self) -> str:
+    def description(self) -> str:
         """Coleta a descrição do ativo e traduz para português brasileiro"""
         try:
             info = self.ticker.get_info()
