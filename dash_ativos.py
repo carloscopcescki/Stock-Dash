@@ -32,6 +32,8 @@ if get_market == "Ações":
                                   width=120)
                 elif fundamental_data.ticker() == "CXSE3":
                     img = st.image("https://www.ivalor.com.br/media/emp/logos/CXSE.png", width=120)
+                elif fundamental_data.ticker() == "AXIA3" or fundamental_data.ticker() == "AXIA6":
+                    img = st.image("https://www.ivalor.com.br/media/emp/logos/AXIA.png", width=120)
                 else:
                     img = st.image(
                         f"https://raw.githubusercontent.com/thecartera/B3-Assets-Images/refs/heads/main/imgs/{stock}.png",
