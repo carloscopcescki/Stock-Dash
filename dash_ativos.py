@@ -131,8 +131,8 @@ if get_market == "Ações":
                 st.write(f"**Lucro Líquido**")
                 st.write(f"R$ {fundamental_data.net_profit()}")
                 
-            st.header(f"Sobre {fundamental_data.ticker()}", divider="grey")
-            st.write(market.description())
+            #st.header(f"Sobre {fundamental_data.ticker()}", divider="grey")
+            #st.write(market.description())
         else:
             st.warning("Selecione um ativo")
     except Exception as e:
